@@ -53,12 +53,14 @@ def monitor():
     print(f"Watching for new issues labeled '{LABEL}' in {REPO_OWNER}/{REPO_NAME}...")
     while True:
         issues = fetch_issues()
-        for issue in issues:
-            if issue["id"] not in seen_issues:
-                notify_new_issue(issue)
-                seen_issues.add(issue["id"])
+        if issues:  # If there are any issues
+            first_issue = issues[0]  # Get only the first issue
+            if first_issue["id"] not in seen_issues:
+                notify_new_issue(first_issue)
+                seen_issues.add(first_issue["id"])
         time.sleep(POLL_INTERVAL)
-        print(f"Checked for new issues at {time.strftime('%Y-%m-%d %H:%M:%S')}")
+       
+
 
 if __name__ == "__main__":
     monitor()
