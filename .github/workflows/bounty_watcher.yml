@@ -19,4 +19,7 @@ jobs:
       - name: Run watcher
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          REPO_OWNER: ${{ secrets.REPO_OWNER }}
+          REPO_NAME: ${{ secrets.REPO_NAME }}
+          LABEL: ${{ secrets.LABEL }}}
         run: python main.py
